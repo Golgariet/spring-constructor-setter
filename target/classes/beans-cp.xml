@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="myorg" class="com.anton.domain.Organization">
+        <constructor-arg value="Google" name="companyName"></constructor-arg>
+        <constructor-arg value="1996" name="yearOfIncorporation"></constructor-arg>
+        <property name="postalCode" value="65656"></property>
+        <property name="employeeCount" value="10500"></property>
+        <property name="slogan" value="To organize the worlds information and make it universally accessible and useful."></property>
+        <property name="businessService" ref="cloudService"></property>
+
+    </bean>
+
+    <bean id="cloudService" class="com.anton.serviceimpl.CloudServiceImpl"></bean>
+    <bean id="ecommerceService" class="com.anton.serviceimpl.EcommerceServiceImpl"></bean>
+    <bean id="agency" class="com.anton.serviceimpl.AgencyRecuitmentServiceImpl"></bean>
+    <bean id="referral" class="com.anton.serviceimpl.ReferralRecruitmentServiceImpl"></bean>
+    <bean id="myhrdept" class="com.anton.domain.HumanResourceDept">
+        <constructor-arg name="recruitmentService" ref="referral"/>
+        <constructor-arg name="organization" ref="myorg"/>
+        <property name="deptName" value="Human Resource Department"></property>
+    </bean>
+
+
+</beans>
